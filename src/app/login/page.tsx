@@ -2,13 +2,21 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Header } from "@/components/ui/header";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { getCookie } from "cookies-next";
 import { toast, Toaster } from "sonner";
 
 export default function Login() {
   const [email, setEmail] = useState("");
   const [error, setError] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  useEffect(() => {
+    const token = getCookie("token");
+    if (token) {
+      setIsLoggedIn(true);
+    }
+  }, []);
 
   async function handleShortUrl(event: React.FormEvent<HTMLFormElement>) {
     setError(false);
@@ -36,7 +44,7 @@ export default function Login() {
 
   return (
     <div className="flex flex-col min-h-[100dvh] ">
-      <Header />
+      <Header isLoggedIn={isLoggedIn} />
       <main className="flex flex-1 justify-center items-center">
         <section className="w-full py-12 md:py-24 lg:py-32 xl:py-48">
           <div className="container px-4 md:px-6">
