@@ -22,7 +22,7 @@ export function Header({ isLoggedIn }: { isLoggedIn: boolean }) {
             Login
           </Link>
           <Link
-            href="create-account"
+            href="signup"
             className="text-sm font-medium hover:underline underline-offset-4"
             prefetch={false}
           >
