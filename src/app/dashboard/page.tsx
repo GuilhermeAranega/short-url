@@ -58,7 +58,6 @@ export default function LinksList() {
   const [slug, setSlug] = useState("");
   const [shortenedURL, setShortenedURL] = useState("");
   const [urlId, setUrlId] = useState("");
-  const [isEdit, setIsEdit] = useState(true);
   const [linkId, setLinkId] = useState("");
   const [loading, setLoading] = useState(true);
 
@@ -261,6 +260,13 @@ export default function LinksList() {
           </TableRoll>
         </thead>
         <tbody>
+          {links.length == 0 ? (
+            <h1 className="text-red-500 text-center py-4">
+              You don't have any shorted links
+            </h1>
+          ) : (
+            <h1></h1>
+          )}
           {links.map((link) => {
             return (
               <TableRoll key={link.id} className="">
