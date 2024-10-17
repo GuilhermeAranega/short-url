@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { setCookie } from "cookies-next";
 import Link from "next/link";
 
-export default function Home({ params }: { params: { id: string } }) {
+export default function Auth({ params }: { params: { id: string } }) {
   const [error, setError] = useState(false);
   const [loading, setLoading] = useState(true);
 

@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 
-export default function Home() {
+export default function Auth() {
   return (
     <div className="flex flex-col min-h-[100dvh] justify-center">
       <h1 className="font-bold text-xl text-center text-red-600">

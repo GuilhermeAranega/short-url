@@ -7,7 +7,7 @@ import { getCookie } from "cookies-next";
 import { toast, Toaster } from "sonner";
 import { setCookie } from "cookies-next";
 
-export default function Login() {
+export default function SignUp() {
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
   const [error, setError] = useState("");
