@@ -38,6 +38,14 @@ export function Header({ isLoggedIn }: { isLoggedIn: boolean }) {
           >
             Dashboard
           </Link>
+
+          <Link
+            href="logout"
+            className="text-sm font-medium hover:underline underline-offset-4"
+            prefetch={false}
+          >
+            Logout
+          </Link>
         </nav>
       )}
     </header>
