@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { CookieValueTypes, getCookie, deleteCookie } from "cookies-next";
+import { getCookie, deleteCookie } from "cookies-next";
 import Link from "next/link";
 
 export default function Home({ params }: { params: { id: string } }) {
