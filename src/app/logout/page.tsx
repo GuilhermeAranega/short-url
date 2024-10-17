@@ -9,7 +9,6 @@ export default function Logout() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    setLoading(true);
     const token = getCookie("token");
     if (!token) {
       setError(true);
