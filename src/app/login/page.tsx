@@ -9,6 +9,7 @@ import { toast, Toaster } from "sonner";
 export default function Login() {
   const [email, setEmail] = useState("");
   const [error, setError] = useState(false);
+  const [notFound, setNotFound] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   useEffect(() => {
@@ -18,8 +19,9 @@ export default function Login() {
     }
   }, []);
 
-  async function handleShortUrl(event: React.FormEvent<HTMLFormElement>) {
+  async function handleSendEmail(event: React.FormEvent<HTMLFormElement>) {
     setError(false);
+    setNotFound(false);
     event.preventDefault();
 
     if (!email) {
@@ -35,7 +37,13 @@ export default function Login() {
       body: JSON.stringify({ email }),
     })
       .then((res) => res.json())
-      .then((data) => console.log(data))
+      .then((data) => {
+        if (data.message == "User not found") {
+          setNotFound(true);
+        } else if (data.message == "Email sent") {
+          toast.success("Email sent");
+        }
+      })
       .catch((err) => {
         console.log(err);
         setError(true);
@@ -52,7 +60,7 @@ export default function Login() {
               <div className="flex flex-col justify-center items-center">
                 <form
                   className="flex flex-col gap-2 bg-slate-200 justify-center p-4 rounded-lg"
-                  onSubmit={handleShortUrl}
+                  onSubmit={handleSendEmail}
                 >
                   {error ? (
                     <Input
@@ -75,6 +83,9 @@ export default function Login() {
                   >
                     Send link to login
                   </Button>
+                  {notFound ? (
+                    <p className="text-red-600 text-sm">User not found</p>
+                  ) : null}
                 </form>
                 <Toaster />
               </div>
