@@ -3,7 +3,7 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Header } from "@/components/ui/header";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { CookieValueTypes, getCookie } from "cookies-next";
 import { toast, Toaster } from "sonner";
 import {
@@ -61,7 +61,7 @@ export default function LinksList() {
   const [linkId, setLinkId] = useState("");
   const [loading, setLoading] = useState(true);
 
-  async function handleRefreshTable() {
+  const handleRefreshTable = useCallback(async () => {
     const fetchUrl = new URL("http://localhost:3333/links");
 
     fetchUrl.searchParams.set("pageIndex", String(currentPage - 1));
@@ -72,7 +72,7 @@ export default function LinksList() {
         setLinks(data.links);
         setTotal(data.total);
       });
-  }
+  }, [currentPage]);
 
   useEffect(() => {
     setLoggedIn(getCookie("token"));
@@ -86,7 +86,7 @@ export default function LinksList() {
 
   useEffect(() => {
     handleRefreshTable();
-  }, [currentPage]);
+  }, [handleRefreshTable]);
 
   const isLoggedIn = loggedIn ? true : false;
 
@@ -262,7 +262,7 @@ export default function LinksList() {
         <tbody>
           {links.length == 0 ? (
             <h1 className="text-red-500 text-center py-4">
-              You don't have any shorted links
+              You don&apos;t have any shorted links
             </h1>
           ) : (
             <h1></h1>
