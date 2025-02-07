@@ -30,7 +30,7 @@ export default function Auth({ params }: { params: { id: string } }) {
         setLoading(false);
       })
       .catch((err) => console.log(err));
-  }, []);
+  }, [params.id]);
 
   if (loading) {
     return <p>Loading...</p>;
